@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const favicon = require('express-favicon');
 const blogRoutes = require('./routes/blogRoutes')
 
 //connect to mongoDB
@@ -16,6 +17,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 app.set('view engine', 'ejs');
 app.use(express.static('assets'))
 app.use(express.urlencoded({ extended: true }))
+app.use(favicon(__dirname + '/favicon.png'));
 
 app.get('/', (req, res) => { res.redirect('/blogs') })
 
